@@ -20,6 +20,7 @@ namespace polei_data
 
     public class FakeSSDbContext : ISSDbContext
     {
+        public DbSet<Category> Categories { get; set; } // Category
         public DbSet<Item> Items { get; set; } // Item
         public DbSet<ItemType> ItemTypes { get; set; } // ItemType
         public DbSet<NotificationSent> NotificationSents { get; set; } // NotificationSent
@@ -35,6 +36,7 @@ namespace polei_data
         {
             _database = new FakeDatabaseFacade(new SSDbContext());
 
+            Categories = new FakeDbSet<Category>("CategoryId");
             Items = new FakeDbSet<Item>("ItemId");
             ItemTypes = new FakeDbSet<ItemType>("ItemTypeId");
             NotificationSents = new FakeDbSet<NotificationSent>("NotificationSentId");

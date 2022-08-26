@@ -3,7 +3,7 @@
     "secrets1": {
       "type": "secrets"
     },
-    "polei-api_db": {
+    "saleseeker-api_db": {
       "type": "mssql",
       "connectionId": "azureSQLdb"
     }

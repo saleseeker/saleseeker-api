@@ -20,6 +20,7 @@ namespace polei_data
             builder.Property(x => x.ItemCount).HasColumnName(@"ItemCount").HasColumnType("int").IsRequired();
             builder.Property(x => x.ItemQuantity).HasColumnName(@"ItemQuantity").HasColumnType("numeric(8,2)").HasPrecision(8,2).IsRequired(false);
             builder.Property(x => x.ItemQuantityUnitId).HasColumnName(@"ItemQuantityUnitID").HasColumnType("int").IsRequired(false);
+            builder.Property(x => x.IsSingle).HasColumnName(@"IsSingle").HasColumnType("bit").IsRequired();
 
             // Foreign keys
             builder.HasOne(a => a.ItemType).WithMany(b => b.Packs).HasForeignKey(c => c.ItemTypeId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Pack_ItemType");
