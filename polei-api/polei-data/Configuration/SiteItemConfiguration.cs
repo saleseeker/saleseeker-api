@@ -4,7 +4,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace polei_data
+namespace saleseeker_data
 {
     // SiteItem
     public class SiteItemConfiguration : IEntityTypeConfiguration<SiteItem>

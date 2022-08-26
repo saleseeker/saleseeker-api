@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace polei_data
+namespace saleseeker_data
 {
     // Unit
     public class UnitConfiguration : IEntityTypeConfiguration<Unit>

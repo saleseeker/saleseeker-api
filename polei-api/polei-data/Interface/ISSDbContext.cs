@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace polei_data
+namespace saleseeker_data
 {
     // ****************************************************************************************************
     // This is not a commercial licence, therefore only a few tables/views/stored procedures are generated.

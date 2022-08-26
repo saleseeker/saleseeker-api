@@ -1,8 +1,10 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlTypes;
+using Microsoft.Extensions.Configuration;
+//using Microsoft.Extensions.Configuration.FileExtensions;
 
-namespace polei_data
+namespace saleseeker_data
 {
 
     public class SSDbContext : DbContext, ISSDbContext
@@ -29,6 +31,19 @@ namespace polei_data
         public DbSet<SubscribedUser> SubscribedUsers { get; set; } // SubscribedUser
 
         public DbSet<Unit> Units { get; set; } // Unit
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //if (!optionsBuilder.IsConfigured)
+            //{
+            //    IConfigurationRoot configuration = new ConfigurationBuilder()
+            //       .SetBasePath(Directory.GetCurrentDirectory())
+            //       .AddJsonFile("appsettings.json")
+            //       .Build();
+            //    var connectionString = configuration.GetConnectionString("DbCoreConnectionString");
+            //    optionsBuilder.UseSqlServer(connectionString);
+            //}
+        }
 
         public bool IsSqlParameterNull(SqlParameter param)
         {

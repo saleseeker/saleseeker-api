@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace polei_data
+namespace saleseeker_data
 {
     // ItemType
     public class ItemType

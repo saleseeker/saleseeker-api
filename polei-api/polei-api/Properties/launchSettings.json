@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "polei_api": {
+    "saleseeker_api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

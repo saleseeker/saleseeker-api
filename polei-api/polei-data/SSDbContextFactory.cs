@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace polei_data
+namespace saleseeker_data
 {
     public class SSDbContextFactory : IDesignTimeDbContextFactory<SSDbContext>
     {

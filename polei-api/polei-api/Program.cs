@@ -1,4 +1,4 @@
-using polei_data;
+using saleseeker_data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

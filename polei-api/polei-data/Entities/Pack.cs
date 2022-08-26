@@ -1,4 +1,4 @@
-namespace polei_data
+namespace saleseeker_data
 {
     // Pack
     public class Pack

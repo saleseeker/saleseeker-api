@@ -16,7 +16,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace polei_data
+namespace saleseeker_data
 {
     // ************************************************************************
     // Fake DbSet

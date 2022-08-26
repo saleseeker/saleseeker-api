@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using polei_data;
+using saleseeker_data;
 
-namespace polei_api.Controllers
+namespace saleseeker_api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,4 +1,4 @@
-namespace polei_data
+namespace saleseeker_data
 {
     // SiteItem
     public class SiteItem
