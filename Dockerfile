@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["saleseeker-api/saleseeker-api.csproj", "saleseeker-api/"]
+COPY ["saleseeker-api/saleseeker-api/saleseeker-api.csproj", "saleseeker-api/"]
 RUN dotnet restore "saleseeker-api/saleseeker-api.csproj"
 COPY . .
 WORKDIR "/src/saleseeker-api"
