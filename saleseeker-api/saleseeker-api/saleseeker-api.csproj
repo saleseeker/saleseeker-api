@@ -8,6 +8,7 @@
     <UserSecretsId>d46414c9-1181-4f45-ad71-6c49f9e47fc4</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <RepositoryUrl>https://gitlab.com/techaccelerator-webscraper/saleseeker-api</RepositoryUrl>
+    <AssemblyName>$(MSBuildProjectName)_Solution</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
