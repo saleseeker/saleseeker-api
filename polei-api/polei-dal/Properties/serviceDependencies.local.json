@@ -3,9 +3,9 @@
     "secrets1": {
       "type": "secrets.user"
     },
-    "polei-api_db": {
+    "saleseeker-api_db": {
       "secretStore": "LocalSecretsFile",
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/polei/databases/polei-api_db",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/polei/databases/saleseeker-api_db",
       "type": "mssql.azure",
       "connectionId": "azureSQLdb"
     }
