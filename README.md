@@ -1,4 +1,4 @@
-# polei-api
+# saleseeker-api
 
 
 
@@ -15,14 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://gitlab.com/techaccelerator-webscraper/polei-api.git
+git remote add origin https://gitlab.com/techaccelerator-webscraper/saleseeker-api.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](https://gitlab.com/techaccelerator-webscraper/polei-api/-/settings/integrations)
+- [ ] [Set up project integrations](https://gitlab.com/techaccelerator-webscraper/saleseeker-api/-/settings/integrations)
 
 ## Collaborate with your team
 
