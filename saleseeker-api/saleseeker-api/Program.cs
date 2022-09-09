@@ -1,10 +1,14 @@
 using saleseeker_data;
 using Microsoft.EntityFrameworkCore;
+using Azure.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var keyVaultEndpoint = new Uri(Environment.GetEnvironmentVariable("VaultUri"));
+builder.Configuration.AddAzureKeyVault(keyVaultEndpoint, new DefaultAzureCredential());
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<SSDbContext>(options =>
