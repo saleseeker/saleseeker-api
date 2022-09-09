@@ -35,7 +35,6 @@ namespace saleseeker_data
         {
             if (!optionsBuilder.IsConfigured)
             {
-
                 IConfigurationRoot configuration = new ConfigurationBuilder()
                    .Build();
                 var connectionString = configuration.GetConnectionString("SSDBConn");

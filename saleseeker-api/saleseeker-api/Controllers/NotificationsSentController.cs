@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using saleseeker_data;
 
 namespace saleseeker_api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class NotificationSentsController : ControllerBase
+    public class NotificationsSentController : ControllerBase
     {
         private readonly SSDbContext _context;
 
-        public NotificationSentsController(SSDbContext context)
+        public NotificationsSentController(SSDbContext context)
         {
             _context = context;
         }
