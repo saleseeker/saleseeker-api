@@ -2,7 +2,6 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlTypes;
 using Microsoft.Extensions.Configuration;
-//using Microsoft.Extensions.Configuration.FileExtensions;
 
 namespace saleseeker_data
 {
@@ -34,15 +33,14 @@ namespace saleseeker_data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //if (!optionsBuilder.IsConfigured)
-            //{
-            //    IConfigurationRoot configuration = new ConfigurationBuilder()
-            //       .SetBasePath(Directory.GetCurrentDirectory())
-            //       .AddJsonFile("appsettings.json")
-            //       .Build();
-            //    var connectionString = configuration.GetConnectionString("DbCoreConnectionString");
-            //    optionsBuilder.UseSqlServer(connectionString);
-            //}
+            if (!optionsBuilder.IsConfigured)
+            {
+
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                   .Build();
+                var connectionString = configuration.GetConnectionString("SSDBConn");
+                optionsBuilder.UseSqlServer();
+            }
         }
 
         public bool IsSqlParameterNull(SqlParameter param)
