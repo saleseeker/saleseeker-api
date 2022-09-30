@@ -38,7 +38,7 @@ namespace saleseeker_data
                 IConfigurationRoot configuration = new ConfigurationBuilder()
                    .Build();
                 var connectionString = configuration.GetConnectionString("SSDBConn");
-                optionsBuilder.UseSqlServer();
+                optionsBuilder.UseSqlServer(connectionString);
             }
         }
 

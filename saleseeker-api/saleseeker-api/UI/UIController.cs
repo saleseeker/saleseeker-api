@@ -67,26 +67,50 @@ namespace saleseeker_api.UI
         [HttpGet("itemsaveprices")]
         public IEnumerable<UIItem> GetAllItemsWithAvePrices()
         {
-            var items = new List<UIItem>();
             if (_context.Items == null)
             {
-                return items;
+                return new List<UIItem>(); ;
             }
 
-            // TODO this doesn't work :P
+            // working on this - JM
+            //var q3 = (from item in _context.Set<Item>()
+            //          join siteItem in _context.Set<SiteItem>() on item.ItemId equals siteItem.ItemId
+            //          join scraped in _context.Set<ScrapedItem>() on siteItem.SiteItemId equals scraped.SiteItemId
+            //          group new { item, scraped } by new { item.ItemId, item.ItemName, item.ItemPhotoUrl } into g2
+            //          select new {
+            //              g2.Key.ItemId,
+            //              g2.Key.ItemName,
+            //              g2.Key.ItemPhotoUrl,
+            //              Ave = g2.Average(x => x.scraped.PriceIncVat),
+            //              scraped = g2.Select(a=>a.scraped)
+                          
+            //          }).ToList();
 
-            var queryItems = from siteItem in _context.Set<SiteItem>()
-            join scrapedItem in _context.Set<ScrapedItem>()
-            on siteItem.SiteItemId equals scrapedItem.SiteItemId
-            into g
-            select new { siteItem.ItemId, siteItem.Item.ItemName, siteItem.Item.ItemPhotoUrl, ave = g.Average( x=>x.PriceIncVat)};
+            //foreach (var item in q3)
+            //{
+            //    var uiItem = new UIItem(item.ItemId, item.ItemName, item.ItemPhotoUrl, item.Ave, new List<UISiteItem>());
+            //    foreach (var scraped in item.scraped)
+            //    {
+            //        var uiSiteItem = new UISiteItem(item.ItemId, scraped.SiteItemId, scraped.)
+            //    }
+            //}
 
-            foreach (var item in queryItems)
-            {
-                items.Add(new UIItem(item.ItemId, item.ItemName, item.ItemPhotoUrl, item.ave, new List<UISiteItem>()));
-            }
 
-            return items;
+            var q2 = (from item in _context.Set<Item>()
+                     join siteItem in _context.Set<SiteItem>() on item.ItemId equals siteItem.ItemId
+                     join scraped in _context.Set<ScrapedItem>() on siteItem.SiteItemId equals scraped.SiteItemId
+                     group new { item, scraped } by new { item.ItemId, item.ItemName, item.ItemPhotoUrl } into g2
+                     select new UIItem(
+                         g2.Key.ItemId, 
+                         g2.Key.ItemName, 
+                         g2.Key.ItemPhotoUrl, 
+                         g2.Average(x => x.scraped.PriceIncVat), 
+                         new List<UISiteItem>()
+                         )
+                     ).ToList<UIItem>();
+
+
+            return q2;
         }
         #endregion
     }
