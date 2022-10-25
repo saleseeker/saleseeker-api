@@ -1,22 +1,25 @@
 ﻿using Azure.Messaging.EventGrid;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Azure.Messaging.EventGrid.SystemEvents;
 
 namespace EventGridEventTrigger.DotNetCoreAPIApp.Controllers
 {
-    [Produces("application/json")]
-    public class EventGridListener : Controller
+    [ApiController]
+    [Route("api/eventgrid")]
+    public class EventGridController : Controller
     {
-        [HttpPost]
-        [Route("api/eventgrid")]
-        public IActionResult Post([FromBody] HttpRequest request)
+        [HttpGet("ping")]
+        public IActionResult Ping()
         {
-            string response = string.Empty;
-            BinaryData events = BinaryData.FromStream(request.Body);
-            
-            EventGridEvent[] eventGridEvents = EventGridEvent.ParseMany(events);
+            return Ok("This works");
+        }
 
-            foreach (EventGridEvent eventGridEvent in eventGridEvents)
+        // POST: api/eventgrid/hook
+        [HttpPost("hook")]
+        public IActionResult Post([FromBody] EventGridEvent[] request)
+        {
+            foreach (EventGridEvent eventGridEvent in request)
             {
                 // Handle system events
                 if (eventGridEvent.TryGetSystemEventData(out object eventData))
@@ -30,7 +33,7 @@ namespace EventGridEventTrigger.DotNetCoreAPIApp.Controllers
                         {
                             ValidationResponse = subscriptionValidationEventData.ValidationCode
                         };
-                        return new OkObjectResult(responseData);
+                        return Ok(responseData);
                     }                    
                 }
                 // Handle custom events
@@ -39,7 +42,7 @@ namespace EventGridEventTrigger.DotNetCoreAPIApp.Controllers
                     // TODO: do our own shit
                 }
             }
-            return new OkObjectResult(response);
+            return BadRequest();
         }
     }
 }
