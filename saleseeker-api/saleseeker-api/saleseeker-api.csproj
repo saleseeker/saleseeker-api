@@ -30,4 +30,9 @@
     <ProjectReference Include="..\saleseeker-data\saleseeker-data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="QueueIntegration\" />
+    <Folder Include="Scheduler\" />
+  </ItemGroup>
+
 </Project>
