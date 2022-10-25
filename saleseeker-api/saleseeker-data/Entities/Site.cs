@@ -7,6 +7,8 @@ namespace saleseeker_data
         public string SiteName { get; set; } // SiteName (length: 200)
         public string SiteHomeUrl { get; set; } // SiteHomeURL (length: 200)
         public string SiteLogoUrl { get; set; } // SiteLogoURL (length: 200)
+        public string CssSelector { get; set; }
+        public string PriceRegex { get; set; }
 
         // Reverse navigation
 
