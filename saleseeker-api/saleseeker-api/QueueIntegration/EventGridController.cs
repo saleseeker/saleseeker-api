@@ -17,7 +17,7 @@ namespace EventGridEventTrigger.DotNetCoreAPIApp.Controllers
 
         // POST: api/eventgrid/hook
         [HttpPost("hook")]
-        public IActionResult Post([FromBody] EventGridEvent[] request)
+        public IActionResult ReceiveEvent([FromBody] EventGridEvent[] request)
         {
             foreach (EventGridEvent eventGridEvent in request)
             {
@@ -43,6 +43,11 @@ namespace EventGridEventTrigger.DotNetCoreAPIApp.Controllers
                 }
             }
             return BadRequest();
+        }
+
+        public void PostEvent(string topic, object data)
+        {
+            // TODO make this actually do something
         }
     }
 }
