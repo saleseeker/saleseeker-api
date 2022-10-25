@@ -62,7 +62,7 @@ namespace EventGridEventTrigger.DotNetCoreAPIApp.Controllers
                 }
                 
             }
-            return BadRequest();
+            return Ok();
         }
 
         public IActionResult ReceiveWebscraperResponseEvent(EventGridEvent eventGridEvent)
