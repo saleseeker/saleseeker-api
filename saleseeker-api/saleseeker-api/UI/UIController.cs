@@ -5,7 +5,7 @@ using saleseeker_api.UI.Models;
 using saleseeker_data;
 using System.Net;
 
-namespace saleseeker_api.Controllers
+namespace saleseeker_api.UI
 {
     [Route("api/ui")]
     [ApiController]
@@ -49,7 +49,7 @@ namespace saleseeker_api.Controllers
                 using (_context)
                 {
                     var result = new UISite().Site(_context, id);
-                    
+
                     if (result == null)
                     {
                         return new WrapperResponse(surfixSourceName, HttpStatusCode.NotFound, "unsuccessful response");
@@ -116,7 +116,7 @@ namespace saleseeker_api.Controllers
                     //        var uiSiteItem = new UISiteItem(item.ItemId, scraped.SiteItemId, scraped.)
                     //    }
                     //}
-                    
+
                     var results = new UIItem().ItemsWithAvePrices(_context);
                     return ResponseCreation.CreateSuccessResponse(surfixSourceName, results, message: "successful response");
                 }
