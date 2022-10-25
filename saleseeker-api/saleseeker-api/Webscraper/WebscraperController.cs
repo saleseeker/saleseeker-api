@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure.Messaging.EventGrid;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using saleseeker_api.Webscraper.Models;
 using saleseeker_data;
@@ -45,8 +46,5 @@ namespace saleseeker_api.Webscraper
 
             return Ok(response);
         }
-
-
-
     }
 }

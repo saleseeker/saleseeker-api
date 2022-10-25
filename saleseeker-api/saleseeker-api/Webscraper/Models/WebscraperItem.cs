@@ -5,12 +5,12 @@ namespace saleseeker_api.Webscraper.Models
 {
     public class WebscraperItem
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Url { get; set; }
-        public float Price { get; set; }
-        public string Selector { get; set; }
-        public string PriceRegex { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string url { get; set; }
+        public float price { get; set; }
+        public string selector { get; set; }
+        public string priceRegex { get; set; }
 
         public List<WebscraperItem> AllItems(SSDbContext _context)
         {
@@ -19,13 +19,29 @@ namespace saleseeker_api.Webscraper.Models
                 .Select(item =>
                          new WebscraperItem
                          {
-                             Id = item.ItemId,
-                             Name = item.Item.ItemName,
-                             Url = item.ItemUrl,
-                             Selector = item.Site.CssSelector,
-                             PriceRegex = item.Site.PriceRegex
+                             id = item.ItemId,
+                             name = item.Item.ItemName,
+                             url = item.ItemUrl,
+                             selector = item.Site.CssSelector,
+                             priceRegex = item.Site.PriceRegex
                          })
                 .ToList() ?? new List<WebscraperItem>();
+        }
+
+        public int UpdateItem(SSDbContext _context)
+        {
+            var vatPrice = price * 0.85;
+
+            var scrapedItem = new ScrapedItem() {
+                SiteItemId = id,
+                PriceIncVat = (decimal)price,
+                PriceExVat = (decimal?)vatPrice,
+                ScrapedDateTime = DateTime.Now
+            };
+
+            var result = _context.SiteItems.First(a => a.ItemId == id);
+            result.ScrapedItems.Add(scrapedItem);
+            return _context.SaveChanges();
         }
     }
 }
