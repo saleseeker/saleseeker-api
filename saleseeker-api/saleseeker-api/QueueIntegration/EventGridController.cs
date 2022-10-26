@@ -28,7 +28,7 @@ namespace EventGridEventTrigger.DotNetCoreAPIApp.Controllers
 
         // POST: api/eventgrid/hook
         [HttpPost("hook")]
-        public IActionResult ReceiveEvent([FromBody] EventGridEvent[] request)
+        public async Task<IActionResult> ReceiveEventAsync([FromBody] EventGridEvent[] request)
         {
             foreach (EventGridEvent eventGridEvent in request)
             {
@@ -55,7 +55,7 @@ namespace EventGridEventTrigger.DotNetCoreAPIApp.Controllers
                 switch (eventGridEvent.EventType)
                 {
                     case "scrapeResponse":
-                        ReceiveWebscraperResponseEvent(eventGridEvent);
+                        await ReceiveWebscraperResponseEventAsync(eventGridEvent);
                         break;
                     default:
                         break;
@@ -65,7 +65,7 @@ namespace EventGridEventTrigger.DotNetCoreAPIApp.Controllers
             return Ok();
         }
 
-        public IActionResult ReceiveWebscraperResponseEvent(EventGridEvent eventGridEvent)
+        public async Task<IActionResult> ReceiveWebscraperResponseEventAsync(EventGridEvent eventGridEvent)
         {
             Console.WriteLine("Received event from WebScraper. ");
 
@@ -75,7 +75,7 @@ namespace EventGridEventTrigger.DotNetCoreAPIApp.Controllers
             if (eventData != null && eventData.id > 0)
             {
                 // Do any additional validation (as required) and then return back the below response
-                eventData.UpdateItem(_context);
+                await eventData.UpdateItemAsync(_context);
                 Console.WriteLine("Updated item: " + eventData.id + " New price: " + eventData.price);
             }
             // Handle custom events

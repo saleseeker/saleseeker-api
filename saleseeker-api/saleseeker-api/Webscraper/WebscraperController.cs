@@ -42,6 +42,8 @@ namespace saleseeker_api.Webscraper
             client.DefaultRequestHeaders.Add("password", "30107B90-93CE-4AF4-9D72-14F984144407");
             var response = await client.PostAsync("https://saleseeker-webscraper-webapp.azurewebsites.net/api/HttpTrigger", httpContent);
 
+            var x = response.Content.ReadAsStreamAsync().Result;
+            
             Console.WriteLine("Made request to WebScraper: " + response.ToString());
 
             return Ok(response);
