@@ -41,12 +41,11 @@ namespace saleseeker_api.Webscraper.Models
                 ScrapedDateTime = DateTime.Now
             };
 
-            var result = _context.SiteItems.First(a => a.ItemId == id);
+            var result = _context.SiteItems.First(a => a.SiteItemId == id);
             result.ScrapedItems.Add(scrapedItem);
 
-            var resultCount = _context.SaveChanges();
-
             await SendEmailAsync(_context);
+            var resultCount = _context.SaveChanges();
             return resultCount;
         }
 
@@ -55,22 +54,22 @@ namespace saleseeker_api.Webscraper.Models
             try
             {
                 // This is definately not the best way to do this, but time is tight so it'll have to do
-                decimal averagePrice = _context.SiteItems
-                    .First(x => x.SiteItemId == id)
-                    .ScrapedItems
-                    .Average(y => y.PriceIncVat);
+                var averagePrice = _context.ScrapedItems.Where(x => x.SiteItemId == id).Average(y => y.PriceIncVat);
 
                 if (averagePrice <= (decimal)price)
                 {
                     return false;
                 }
 
+                float percentageDrop = 1.0f - (price / (float)averagePrice);
+
                 // This isn't accounting for any discount percentages yet. Can you take a look at this Jen?
                 var subscriptions = _context.SubscribedItems
                     .Where(x => 
                         (x.Item.SiteItems
                         .Where(y => y.SiteItemId == id)
-                        .Count() > 0));
+                        .Count() > 0)
+                        && (x.PercentDiscount * -100) <= percentageDrop);
 
                 var emailsToSendTo = subscriptions
                     .Select(x => x.SubscribedUser.EmailAddress)
