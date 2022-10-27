@@ -1,4 +1,4 @@
-﻿namespace saleseeker_api.UI.Models
+﻿namespace saleseeker_api.ViewModels.UI
 {
     public class UISiteItem
     {
